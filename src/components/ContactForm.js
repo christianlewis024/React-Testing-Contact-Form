@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 const ContactForm = () => {
   const [data, setData] = useState();
   const { register, errors, handleSubmit, reset } = useForm({
-    mode: "onBlur"
+    mode: "onBlur",
   });
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     setData(data);
   };
 
@@ -48,13 +48,26 @@ const ContactForm = () => {
         </div>
         <div>
           <label htmlFor="message">Message</label>
-          <textarea name="message" ref={register({ required: false })} />
+          <textarea name="messages" ref={register({ required: false })} />
         </div>
+
+        <div>
+          <label htmlFor="checkbox">
+            Accept TOS
+            <input
+              type="checkbox"
+              name="tos"
+              ref={register({ required: true })}
+            />
+          </label>
+        </div>
+
         {data && (
           <pre style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
+
         <input type="submit" />
       </form>
     </div>
